@@ -1,0 +1,9 @@
+*.swp
+*.bak
+*.pyc
+*.class
+*.o
+*.obj
+*.git
+.VimballRecord
+.netrwhist
