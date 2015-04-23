@@ -14,15 +14,17 @@ fun! Less()
   "execute 'above split'
   execute 'new'
   wincmd j
-  execute 'silent! 1,1g/List of/d'
-  execute 'silent! 1,1g/Table/+1d'
-  execute 'silent! 1,2d'
+  "execute 'silent! 1,1g/List of/d'
+  "execute 'silent! 1,1g/Table/+1d'
+  execute 'silent! 1,1d'
+  execute 'silent! 1,1d'
   wincmd k
   execute 'silent! norm! P'
   " resize upper window to one line; two lines are not needed because vim adds separating line
   execute 'resize 1'
   " switch to lower window and scroll 2 lines down 
   wincmd j
+  execute 'silent! 1,1d'
   "execute 'norm! 2'
   " hide statusline in lower window
   set laststatus=0
