@@ -16,9 +16,9 @@ fun! Less()
   wincmd j
   execute 'silent! 1,1g/List of/d'
   execute 'silent! 1,1g/Table/+1d'
-  execute '1,2d'
+  execute 'silent! 1,2d'
   wincmd k
-  execute 'norm! P'
+  execute 'silent! norm! P'
   " resize upper window to one line; two lines are not needed because vim adds separating line
   execute 'resize 1'
   " switch to lower window and scroll 2 lines down 

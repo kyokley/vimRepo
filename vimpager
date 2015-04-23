@@ -1,4 +1,0 @@
-#!/bin/bash
-what=-
-test "$@" && what="$@"
-exec vim -u NONE -S ~/.vim/bundle/vim-less/plugin/less.vim -c Less $what
