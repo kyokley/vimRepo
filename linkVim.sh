@@ -14,10 +14,7 @@ sudo npm install -g jshint
 sudo pip install flake8 yapf
 
 sudo aptitude install build-essential cmake python-dev
-mkdir /tmp/ycm_build
-cd /tmp/ycm_build
-cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-make ycm_support_libs
+~/.vim/bundle/YouCompleteMe/install.sh
 
 cd ~/.vim
 tar -zxvf rope-0.9.3.tar.gz
