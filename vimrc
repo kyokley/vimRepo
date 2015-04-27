@@ -27,6 +27,10 @@ set nocompatible
 let $MYVIMRC = $HOME."/.vim/vimrc"
 
 filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'Valloric/YouCompleteMe'
+call vundle#end()
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype plugin indent on
