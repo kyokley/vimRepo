@@ -13,10 +13,8 @@ sudo npm install -g jslint
 sudo npm install -g jshint
 sudo pip install flake8 yapf
 
-git submodule update --init --recursive
-vim +PluginInstall +qall
 sudo aptitude install build-essential cmake python-dev
-~/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+~/.vim/bundle/YouCompleteMe/install.sh
 
 cd ~/.vim
 tar -zxvf rope-0.9.3.tar.gz
