@@ -3,6 +3,7 @@
 fun! Less()
   set nocompatible
   set nowrap
+  set nowrapscan
   set scrollopt=hor
   set scrollbind
   set nonumber
