@@ -3,14 +3,15 @@
 fun! Less()
   set nocompatible
   set nowrap
+  set nowrapscan
   set scrollopt=hor
   set scrollbind
   set nonumber
   set incsearch
   set hlsearch
-  set ignorecase
   set smartcase
   set nostartofline
+  set scrolloff=5
   "execute 'above split'
   execute 'new'
   wincmd j
