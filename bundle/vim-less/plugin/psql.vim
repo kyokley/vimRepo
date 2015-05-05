@@ -9,9 +9,9 @@ fun! Less()
   set nonumber
   set incsearch
   set hlsearch
-  set ignorecase
   set smartcase
   set nostartofline
+  set scrolloff=5
   "execute 'above split'
   execute 'new'
   wincmd j
