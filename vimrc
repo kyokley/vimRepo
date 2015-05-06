@@ -160,8 +160,10 @@ noremap ,* :call CommentLinePincer('/* ', ' */')<CR>+
 noremap <silent> <S-j> @='20j'<CR>
 noremap <silent> <S-k> @='20k'<CR>
 
-noremap <S-l> :bnext<CR>
-noremap <S-h> :bprev<CR>
+nnoremap <S-l> :bnext<CR>
+nnoremap <S-h> :bprev<CR>
+vnoremap <S-l> 5l
+vnoremap <S-h> 5h
 noremap <S-y> y$
 noremap <S-Up> :tabp<CR>
 noremap <S-Down> :tabn<CR>
