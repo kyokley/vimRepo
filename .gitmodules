@@ -41,3 +41,6 @@
 [submodule "bundle/repeat"]
 	path = bundle/repeat
 	url = git@github.com:tpope/vim-repeat.git
+[submodule "bundle/characterize"]
+	path = bundle/characterize
+	url = git@github.com:tpope/vim-characterize.git
