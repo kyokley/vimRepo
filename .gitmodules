@@ -44,3 +44,6 @@
 [submodule "bundle/characterize"]
 	path = bundle/characterize
 	url = git@github.com:tpope/vim-characterize.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git@github.com:scrooloose/syntastic.git
