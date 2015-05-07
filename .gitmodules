@@ -53,3 +53,6 @@
 [submodule "bundle/abolish"]
 	path = bundle/abolish
 	url = git@github.com:tpope/vim-abolish.git
+[submodule "bundle/bufferline"]
+	path = bundle/bufferline
+	url = git@github.com:bling/vim-bufferline.git
