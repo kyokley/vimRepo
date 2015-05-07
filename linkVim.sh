@@ -19,13 +19,6 @@ git submodule update --init --recursive
 sudo aptitude install build-essential cmake python-dev
 ~/.vim/bundle/YouCompleteMe/install.sh
 
-tar -zxvf rope-0.9.3.tar.gz
-cd rope-0.9.3
-sudo python setup.py build
-sudo python setup.py install
-cd ..
-sudo rm -rf rope-0.9.3
-
 cd ~/.vim/bundle/command-t
 rake make
 
