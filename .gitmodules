@@ -20,3 +20,6 @@
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = git@github.com:sjl/gundo.vim.git
+[submodule "bundle/jshint2"]
+	path = bundle/jshint2
+	url = git@github.com:Shutnik/jshint2.vim.git
