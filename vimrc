@@ -240,6 +240,11 @@ function! MyPrev()
     endif
 endfunction
 
+" Quicksilver
+let g:QSIgnore = "\\.pyc$;\\.swp$"
+
+"NERDTree
+let NERDChristmasTree=1
 let NERDTreeHijackNetrw=1
 
 "Syntastic Settings
@@ -434,8 +439,6 @@ function! s:Median(nums)
         return (nums[l/2] + nums[(l/2)-1]) / 2
     endif
 endfunction
-"NERDTree
-let NERDChristmasTree=1
 
 set laststatus=2
 
