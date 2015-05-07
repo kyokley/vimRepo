@@ -238,7 +238,14 @@ function! MyPrev()
     endif
 endfunction
 
-" Quicksilver
+" Signify Settings
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=Green
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=Red
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=Yellow
+highlight DiffText        cterm=bold ctermbg=Red ctermfg=Yellow
+
+"QuickSilver Config
+let g:QSMatchFn = 'fuzzy'
 let g:QSIgnore = "\\.pyc$;\\.swp$"
 
 "NERDTree
@@ -444,15 +451,6 @@ function! s:Median(nums)
 endfunction
 
 set laststatus=2
-
-" Signify Settings
-highlight DiffAdd           cterm=bold ctermbg=none ctermfg=Green
-highlight DiffDelete        cterm=bold ctermbg=none ctermfg=Red
-highlight DiffChange        cterm=bold ctermbg=none ctermfg=Yellow
-highlight DiffText        cterm=bold ctermbg=Red ctermfg=Yellow
-
-"QuickSilver Config
-let g:QSMatchFn = 'fuzzy'
 
 python << EOF
 import vim
