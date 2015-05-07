@@ -5,6 +5,7 @@
 	path = bundle/DrawIt
 	url = git@github.com:vim-scripts/DrawIt.git
     ignore = dirty
+    branch = master
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
