@@ -70,9 +70,6 @@ hi statuslinenc cterm=NONE ctermbg=black ctermfg=white
 nnoremap <Leader>c :set cursorline!<CR>
 
 hi SpellBad cterm=NONE ctermbg=darkred ctermfg=yellow guibg=darkred guifg=yellow
-let g:pyflakes_use_quickfix = 0
-let g:pep8_map='<leader>8'
-"let g:pep8_map='<F8>'
 
 set incsearch
 set hlsearch
@@ -90,7 +87,7 @@ let g:tagbar_autofocus = 1
 nnoremap <F4> :TagbarToggle<CR>
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :set nolist!<CR>
-nnoremap <silent> <leader>h :noh<CR>:SyntasticClear<CR>:sign unplace *<CR>
+nnoremap <silent> <leader>h :noh<CR>:call flake8#Flake8UnplaceMarkers()<CR>:sign unplace *<CR>
 nnoremap <silent> <leader>g :redir @g<CR>:g//<CR>:redir END<CR>:new<CR>:put! g<CR>
 
 nnoremap <F10> :set invpaste paste?<Enter>
@@ -125,6 +122,7 @@ augroup filetype_python
     au FileType python set foldmethod=indent
     au FileType python set foldlevel=99
     au FileType python set nosmartindent
+    au FileType python map <buffer> <leader>8 :call Flake8()<CR>
     "au FileType python colo molokai
 augroup END
 
@@ -249,7 +247,7 @@ let NERDTreeHijackNetrw=1
 
 "Syntastic Settings
 let g:syntastic_check_on_open=1
-let g:syntastic_python_checker="pyflakes"
+let g:syntastic_python_checkers=["pyflakes"]
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
@@ -257,6 +255,11 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 "VCSCommand Settings
 let g:VCSCommandDeleteOnHide = 1
+
+"Flake8
+let g:flake8_show_quickfix=0
+let g:flake8_show_in_gutter=1
+let g:flake8_show_in_file=1
 
 "statusline setup
 set statusline=
