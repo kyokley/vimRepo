@@ -4,3 +4,4 @@
 [submodule "bundle/DrawIt"]
 	path = bundle/DrawIt
 	url = git@github.com:vim-scripts/DrawIt.git
+    ignore = dirty
