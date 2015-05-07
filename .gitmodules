@@ -56,3 +56,6 @@
 [submodule "bundle/bufferline"]
 	path = bundle/bufferline
 	url = git@github.com:bling/vim-bufferline.git
+[submodule "bundle/exchange"]
+	path = bundle/exchange
+	url = git@github.com:tommcdo/vim-exchange.git
