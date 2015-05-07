@@ -9,6 +9,7 @@
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
+    ignore = dirty
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = git@github.com:wincent/command-t.git
