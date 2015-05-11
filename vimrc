@@ -246,7 +246,7 @@ highlight DiffText        cterm=bold ctermbg=Red ctermfg=Yellow
 
 "QuickSilver Config
 let g:QSMatchFn = 'fuzzy'
-let g:QSIgnore = "\\.pyc$;\\.swp$"
+let g:QSIgnore = ".*\.pyc$;.*\.swp$"
 
 "NERDTree
 let NERDChristmasTree=1
