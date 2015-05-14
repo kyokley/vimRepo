@@ -248,6 +248,9 @@ highlight DiffText        cterm=bold ctermbg=Red ctermfg=Yellow
 let g:QSMatchFn = 'fuzzy'
 let g:QSIgnore = ".*\.pyc$;.*\.swp$"
 
+" Silver Searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 "NERDTree
 let NERDChristmasTree=1
 let NERDTreeHijackNetrw=1
