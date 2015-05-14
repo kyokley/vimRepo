@@ -251,6 +251,12 @@ let g:QSIgnore = ".*\.pyc$;.*\.swp$"
 "Command-T
 let g:CommandTMaxDepth=5
 
+" ctrlp
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_map = '<leader>p'
+nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>
+nnoremap <c-p> :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
+
 "NERDTree
 let NERDChristmasTree=1
 let NERDTreeHijackNetrw=1

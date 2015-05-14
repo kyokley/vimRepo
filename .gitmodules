@@ -98,3 +98,8 @@
 	url = git@github.com:mhinz/vim-signify.git
     ignore = dirty
     branch = master
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+    ignore = dirty
+    branch = master
