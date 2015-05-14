@@ -256,10 +256,10 @@ else
 endif
 
 " ctrlp
-" let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_map = '<leader>p'
-nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>
-nnoremap <c-p> :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_map = '<c-p>'
+nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>:let g:ctrlp_working_path_mode = 'r'<CR>
+nnoremap <leader>p :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
 " Set delay to prevent extra search
 let g:ctrlp_lazy_update = 0
 let g:ctrlp_clear_cache_on_exit = 0
