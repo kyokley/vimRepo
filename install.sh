@@ -7,7 +7,7 @@ fi
 
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
-sudo aptitude install rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 nodejs npm
+sudo aptitude install rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 nodejs npm silversearcher-ag
 sudo npm config set registry http://registry.npmjs.org/
 sudo npm install -g jslint
 sudo npm install -g jshint
