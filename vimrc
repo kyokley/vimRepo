@@ -253,6 +253,15 @@ let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_map = '<leader>p'
 nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>
 nnoremap <c-p> :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_max_files = 0
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+        set grepprg=ag\ --nogroup\ --nocolor
+        let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+endif
 
 "NERDTree
 let NERDChristmasTree=1
