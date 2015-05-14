@@ -248,28 +248,35 @@ highlight DiffText        cterm=bold ctermbg=Red ctermfg=Yellow
 let g:QSMatchFn = 'fuzzy'
 let g:QSIgnore = ".*\.pyc$;.*\.swp$"
 
-" ctrlp
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_map = '<leader>p'
-nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>
-nnoremap <c-p> :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
-" Set delay to prevent extra search
-let g:ctrlp_lazy_update = 350
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_max_files = 0
-" If ag is available use it as filename list generator instead of 'find'
-if executable("ag")
-        let g:ackprg = 'ag --nogroup --nocolor --column'
-        set grepprg=ag\ --nogroup\ --nocolor
-        let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
-endif
-
 " PyMatcher for CtrlP
 if !has('python')
     echo 'In order to use pymatcher plugin, you need +python compiled vim'
 else
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
+
+" ctrlp
+" let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_map = '<leader>p'
+nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>
+nnoremap <c-p> :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 0
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_max_files = 0
+" If ag is available use it as filename list generator instead of 'find'
+let g:ackprg = 'ag --nogroup --nocolor --column'
+set grepprg=ag\ --nogroup\ --nocolor
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --ignore ''**/*.pyc'' --hidden -g ""'
+
+"let g:ctrlp_user_command = {
+"    \ 'types': {
+"      \ 1: ['.git', 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'],
+"      \ 2: ['.svn', 'ag %s -i --nocolor --nogroup --ignore ''.svn'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'],
+"      \ },
+"    \ 'fallback': 'find %s -type f'
+"    \ }
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:100'
 
 "NERDTree
 let NERDChristmasTree=1
