@@ -8,11 +8,6 @@
 	url = git@github.com:Valloric/YouCompleteMe.git
     ignore = dirty
     branch = master
-[submodule "bundle/command-t"]
-	path = bundle/command-t
-	url = git@github.com:wincent/command-t.git
-    ignore = dirty
-    branch = master
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
@@ -96,5 +91,15 @@
 [submodule "bundle/signify"]
 	path = bundle/signify
 	url = git@github.com:mhinz/vim-signify.git
+    ignore = dirty
+    branch = master
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+    ignore = dirty
+    branch = master
+[submodule "bundle/ctrlp-py-matcher"]
+	path = bundle/ctrlp-py-matcher
+	url = git@github.com:FelikZ/ctrlp-py-matcher.git
     ignore = dirty
     branch = master
