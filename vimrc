@@ -248,9 +248,6 @@ highlight DiffText        cterm=bold ctermbg=Red ctermfg=Yellow
 let g:QSMatchFn = 'fuzzy'
 let g:QSIgnore = ".*\.pyc$;.*\.swp$"
 
-"Command-T
-let g:CommandTMaxDepth=5
-
 " ctrlp
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_map = '<leader>p'
