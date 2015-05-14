@@ -8,11 +8,6 @@
 	url = git@github.com:Valloric/YouCompleteMe.git
     ignore = dirty
     branch = master
-[submodule "bundle/command-t"]
-	path = bundle/command-t
-	url = git@github.com:wincent/command-t.git
-    ignore = dirty
-    branch = master
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
