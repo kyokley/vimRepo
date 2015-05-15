@@ -20,9 +20,6 @@ git submodule update --init --recursive
 sudo aptitude install build-essential cmake python-dev
 ~/.vim/bundle/YouCompleteMe/install.sh
 
-cd ~/.vim/bundle/command-t
-rake make
-
 if [ ! -e "$HOME/.vimbackup" ]
 then
     mkdir "$HOME/.vimbackup"
