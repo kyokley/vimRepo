@@ -144,10 +144,6 @@ noremap <leader>u :norm @u<CR>
 let @s = ':silent! s/\<\(check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
 noremap <leader>s :norm @s<CR><CR>
 
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
-let g:SuperTabCrClosePreview = 0
-
 "Pydiction Config
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
@@ -297,6 +293,12 @@ let g:VCSCommandDeleteOnHide = 1
 let g:flake8_show_quickfix=0
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
+
+"YCM
+set completeopt=menuone
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "statusline setup
 set statusline=
