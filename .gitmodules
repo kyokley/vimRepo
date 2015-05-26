@@ -1,105 +1,105 @@
 [submodule "bundle/DrawIt"]
 	path = bundle/DrawIt
-	url = git@github.com:vim-scripts/DrawIt.git
+	url = https://github.com/gvim-scripts/DrawIt.git
     ignore = dirty
     branch = master
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
+	url = https://github.com/gValloric/YouCompleteMe.git
     ignore = dirty
     branch = master
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
-	url = git@github.com:tpope/vim-fugitive.git
+	url = https://github.com/gtpope/vim-fugitive.git
     ignore = dirty
     branch = master
 [submodule "bundle/git"]
 	path = bundle/git
-	url = git@github.com:tpope/vim-git.git
+	url = https://github.com/gtpope/vim-git.git
     ignore = dirty
     branch = master
 [submodule "bundle/gundo"]
 	path = bundle/gundo
-	url = git@github.com:sjl/gundo.vim.git
+	url = https://github.com/gsjl/gundo.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/jshint2"]
 	path = bundle/jshint2
-	url = git@github.com:Shutnik/jshint2.vim.git
+	url = https://github.com/gShutnik/jshint2.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/lusty"]
 	path = bundle/lusty
-	url = git@github.com:sjbach/lusty.git
+	url = https://github.com/gsjbach/lusty.git
     ignore = dirty
     branch = master
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
+	url = https://github.com/gscrooloose/nerdtree.git
     ignore = dirty
     branch = master
 [submodule "bundle/flake8"]
 	path = bundle/flake8
-	url = git@github.com:nvie/vim-flake8.git
+	url = https://github.com/gnvie/vim-flake8.git
     ignore = dirty
     branch = master
 [submodule "bundle/quicksilver"]
 	path = bundle/quicksilver
-	url = git@github.com:Bogdanp/quicksilver.vim.git
+	url = https://github.com/gBogdanp/quicksilver.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/surround"]
 	path = bundle/surround
-	url = git@github.com:tpope/vim-surround.git
+	url = https://github.com/gtpope/vim-surround.git
     ignore = dirty
     branch = master
 [submodule "bundle/repeat"]
 	path = bundle/repeat
-	url = git@github.com:tpope/vim-repeat.git
+	url = https://github.com/gtpope/vim-repeat.git
     ignore = dirty
     branch = master
 [submodule "bundle/characterize"]
 	path = bundle/characterize
-	url = git@github.com:tpope/vim-characterize.git
+	url = https://github.com/gtpope/vim-characterize.git
     ignore = dirty
     branch = master
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
-	url = git@github.com:scrooloose/syntastic.git
+	url = https://github.com/gscrooloose/syntastic.git
     ignore = dirty
     branch = master
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
-	url = git@github.com:majutsushi/tagbar.git
+	url = https://github.com/gmajutsushi/tagbar.git
     ignore = dirty
     branch = master
 [submodule "bundle/abolish"]
 	path = bundle/abolish
-	url = git@github.com:tpope/vim-abolish.git
+	url = https://github.com/gtpope/vim-abolish.git
     ignore = dirty
     branch = master
 [submodule "bundle/bufferline"]
 	path = bundle/bufferline
-	url = git@github.com:bling/vim-bufferline.git
+	url = https://github.com/gbling/vim-bufferline.git
     ignore = dirty
     branch = master
 [submodule "bundle/exchange"]
 	path = bundle/exchange
-	url = git@github.com:tommcdo/vim-exchange.git
+	url = https://github.com/gtommcdo/vim-exchange.git
     ignore = dirty
     branch = master
 [submodule "bundle/signify"]
 	path = bundle/signify
-	url = git@github.com:mhinz/vim-signify.git
+	url = https://github.com/gmhinz/vim-signify.git
     ignore = dirty
     branch = master
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
-	url = git@github.com:kien/ctrlp.vim.git
+	url = https://github.com/gkien/ctrlp.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/ctrlp-py-matcher"]
 	path = bundle/ctrlp-py-matcher
-	url = git@github.com:FelikZ/ctrlp-py-matcher.git
+	url = https://github.com/gFelikZ/ctrlp-py-matcher.git
     ignore = dirty
     branch = master
