@@ -137,7 +137,7 @@ augroup filetype_cs
 augroup END
 
 " A little macro to remove special aligning
-let @u = ':silent! s/\(\S\)\s\{2,\}/\1 /g'
+let @u = ':silent! s/\(\S\)\s\{2,\}/\1 /g:silent! s/\S\zs\s\+\ze[:\])]//g'
 noremap <leader>u :norm @u<CR>
 
 " A macro to capitalize SQL keywords
