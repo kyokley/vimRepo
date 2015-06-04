@@ -278,6 +278,7 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:100'
 "NERDTree
 let NERDChristmasTree=1
 let NERDTreeHijackNetrw=1
+let NERDTreeIgnore=['\.pyc$']
 
 "Syntastic Settings
 let g:syntastic_check_on_open=1
