@@ -54,7 +54,7 @@ fun! Less()
   " faster quit (I tend to forget about the upper panel)
   nmap q :qa!
   nmap Q :qa!
-  set ro
+  set noma
   set fillchars=stl:-,stlnc:-
 endfun
 command! -nargs=0 Less call Less()
