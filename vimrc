@@ -503,7 +503,7 @@ def SetBreakpoint():
         if strLine == "import ipdb":
             break
     else:
-        vim.current.buffer.append( 'import ipdb', 1)
+        vim.current.buffer.append('import ipdb', 0)
         vim.command( 'normal j1')
 
 vim.command( 'noremap <F12> :py SetBreakpoint()<cr>')
