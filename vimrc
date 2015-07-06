@@ -202,6 +202,12 @@ augroup filetype_cs
     au FileType cs set smartindent
 augroup END
 
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
 function! s:DiffWithSaved()
   let filetype=&ft
   diffthis
