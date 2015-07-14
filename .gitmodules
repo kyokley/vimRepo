@@ -103,3 +103,8 @@
 	url = git@github.com:FelikZ/ctrlp-py-matcher.git
     ignore = dirty
     branch = master
+[submodule "bundle/vim-psql-pager"]
+	path = bundle/vim-psql-pager
+	url = git@github.com:kyokley/vim-psql-pager.git
+    ignore = dirty
+    branch = master

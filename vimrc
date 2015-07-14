@@ -80,6 +80,14 @@ set timeout
 set timeoutlen=400
 set ttimeoutlen=100
 
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
@@ -103,39 +111,6 @@ inoremap KK <Esc>
 
 cnoremap w!! w !sudo tee % > /dev/null
 
-" AutoCommands!
-augroup EditVim
-    autocmd!
-    au InsertEnter * highlight LineNr ctermbg=red   guibg=red
-    au InsertLeave * highlight LineNr ctermbg=NONE guibg=NONE
-    au FileType svn,*commit* setlocal spell
-    au FileType git,*commit* setlocal spell
-    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-        
-    "recalculate the trailing whitespace warning when idle, and after saving
-    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-    autocmd cursorhold,bufwritepost * unlet! b:statusline_conflict_warning   
-augroup END
-
-augroup filetype_python
-    autocmd!
-    au FileType python set foldmethod=indent
-    au FileType python set foldlevel=99
-    au FileType python set nosmartindent
-    au FileType python map <buffer> <leader>8 :call Flake8()<CR>
-    "au FileType python colo molokai
-augroup END
-
-augroup filetype_cs
-    autocmd!
-    au FileType cs set omnifunc=syntaxcomplete#Complete
-    au FileType cs set foldmethod=marker
-    au FileType cs set foldmarker={,}
-    au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
-    au FileType cs set foldlevelstart=2
-    au FileType cs set smartindent
-augroup END
-
 " A little macro to remove special aligning
 let @u = ':silent! s/\(\S\)\s\{2,\}/\1 /g:silent! s/\S\zs\s\+\ze[:\])]//g'
 noremap <leader>u :norm @u<CR>
@@ -143,9 +118,6 @@ noremap <leader>u :norm @u<CR>
 " A macro to capitalize SQL keywords
 let @s = ':silent! s/\<\(check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
 noremap <leader>s :norm @s<CR><CR>
-
-"Pydiction Config
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
 " Add some mappings
 noremap ,# :call CommentLineToEnd('#')<CR>+
@@ -196,6 +168,45 @@ nnoremap ,e :e $MYVIMRC<CR>
 
 nnoremap ,d :cd ~/TexturaWD/textura<CR>
 runtime ftplugin/man.vim
+
+" AutoCommands!
+augroup EditVim
+    autocmd!
+    au InsertEnter * highlight LineNr ctermbg=red   guibg=red
+    au InsertLeave * highlight LineNr ctermbg=NONE guibg=NONE
+    au FileType svn,*commit* setlocal spell
+    au FileType git,*commit* setlocal spell
+    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+        
+    "recalculate the trailing whitespace warning when idle, and after saving
+    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+    autocmd cursorhold,bufwritepost * unlet! b:statusline_conflict_warning   
+augroup END
+
+augroup filetype_python
+    autocmd!
+    au FileType python set foldmethod=indent
+    au FileType python set foldlevel=99
+    au FileType python set nosmartindent
+    au FileType python map <buffer> <leader>8 :call Flake8()<CR>
+    "au FileType python colo molokai
+augroup END
+
+augroup filetype_cs
+    autocmd!
+    au FileType cs set omnifunc=syntaxcomplete#Complete
+    au FileType cs set foldmethod=marker
+    au FileType cs set foldmarker={,}
+    au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+    au FileType cs set foldlevelstart=2
+    au FileType cs set smartindent
+augroup END
+
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 function! s:DiffWithSaved()
   let filetype=&ft
@@ -301,6 +312,9 @@ set completeopt=menuone
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"Pydiction Config
+let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
 "statusline setup
 set statusline=
