@@ -105,6 +105,6 @@
     branch = master
 [submodule "bundle/vim-psql-pager"]
 	path = bundle/vim-psql-pager
-	url = git@github.com:kyokley/vim-psql-pager.git
+	url = https://github.com/kyokley/vim-psql-pager.git
     ignore = dirty
     branch = master
