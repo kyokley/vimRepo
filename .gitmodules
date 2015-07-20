@@ -1,6 +1,6 @@
 [submodule "bundle/DrawIt"]
 	path = bundle/DrawIt
-	url = https://github.com/gvim-scripts/DrawIt.git
+	url = https://github.com/vim-scripts/DrawIt.git
     ignore = dirty
     branch = master
 [submodule "bundle/YouCompleteMe"]
