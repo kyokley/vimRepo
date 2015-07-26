@@ -1,105 +1,105 @@
 [submodule "bundle/DrawIt"]
 	path = bundle/DrawIt
-	url = https://github.com/gvim-scripts/DrawIt.git
+	url = https://github.com/vim-scripts/DrawIt.git
     ignore = dirty
     branch = master
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
-	url = https://github.com/gValloric/YouCompleteMe.git
+	url = https://github.com/Valloric/YouCompleteMe.git
     ignore = dirty
     branch = master
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
-	url = https://github.com/gtpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
     ignore = dirty
     branch = master
 [submodule "bundle/git"]
 	path = bundle/git
-	url = https://github.com/gtpope/vim-git.git
+	url = https://github.com/tpope/vim-git.git
     ignore = dirty
     branch = master
 [submodule "bundle/gundo"]
 	path = bundle/gundo
-	url = https://github.com/gsjl/gundo.vim.git
+	url = https://github.com/sjl/gundo.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/lusty"]
 	path = bundle/lusty
-	url = https://github.com/gsjbach/lusty.git
+	url = https://github.com/sjbach/lusty.git
     ignore = dirty
     branch = master
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
-	url = https://github.com/gscrooloose/nerdtree.git
+	url = https://github.com/scrooloose/nerdtree.git
     ignore = dirty
     branch = master
 [submodule "bundle/flake8"]
 	path = bundle/flake8
-	url = https://github.com/gnvie/vim-flake8.git
+	url = https://github.com/nvie/vim-flake8.git
     ignore = dirty
     branch = master
 [submodule "bundle/quicksilver"]
 	path = bundle/quicksilver
-	url = https://github.com/gBogdanp/quicksilver.vim.git
+	url = https://github.com/Bogdanp/quicksilver.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/surround"]
 	path = bundle/surround
-	url = https://github.com/gtpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
     ignore = dirty
     branch = master
 [submodule "bundle/repeat"]
 	path = bundle/repeat
-	url = https://github.com/gtpope/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
     ignore = dirty
     branch = master
 [submodule "bundle/characterize"]
 	path = bundle/characterize
-	url = https://github.com/gtpope/vim-characterize.git
+	url = https://github.com/tpope/vim-characterize.git
     ignore = dirty
     branch = master
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
-	url = https://github.com/gscrooloose/syntastic.git
+	url = https://github.com/scrooloose/syntastic.git
     ignore = dirty
     branch = master
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
-	url = https://github.com/gmajutsushi/tagbar.git
+	url = https://github.com/majutsushi/tagbar.git
     ignore = dirty
     branch = master
 [submodule "bundle/abolish"]
 	path = bundle/abolish
-	url = https://github.com/gtpope/vim-abolish.git
+	url = https://github.com/tpope/vim-abolish.git
     ignore = dirty
     branch = master
 [submodule "bundle/bufferline"]
 	path = bundle/bufferline
-	url = https://github.com/gbling/vim-bufferline.git
+	url = https://github.com/bling/vim-bufferline.git
     ignore = dirty
     branch = master
 [submodule "bundle/exchange"]
 	path = bundle/exchange
-	url = https://github.com/gtommcdo/vim-exchange.git
+	url = https://github.com/tommcdo/vim-exchange.git
     ignore = dirty
     branch = master
 [submodule "bundle/signify"]
 	path = bundle/signify
-	url = https://github.com/gmhinz/vim-signify.git
+	url = https://github.com/mhinz/vim-signify.git
     ignore = dirty
     branch = master
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
-	url = https://github.com/gkien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
     ignore = dirty
     branch = master
 [submodule "bundle/ctrlp-py-matcher"]
 	path = bundle/ctrlp-py-matcher
-	url = https://github.com/gFelikZ/ctrlp-py-matcher.git
+	url = https://github.com/FelikZ/ctrlp-py-matcher.git
     ignore = dirty
     branch = master
 [submodule "bundle/vim-psql-pager"]
 	path = bundle/vim-psql-pager
-	url = git@github.com:kyokley/vim-psql-pager.git
+	url = https://github.com/kyokley/vim-psql-pager.git
     ignore = dirty
     branch = master
