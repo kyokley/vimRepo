@@ -23,11 +23,6 @@
 	url = https://github.com/gsjl/gundo.vim.git
     ignore = dirty
     branch = master
-[submodule "bundle/jshint2"]
-	path = bundle/jshint2
-	url = https://github.com/gShutnik/jshint2.vim.git
-    ignore = dirty
-    branch = master
 [submodule "bundle/lusty"]
 	path = bundle/lusty
 	url = https://github.com/gsjbach/lusty.git
@@ -101,5 +96,10 @@
 [submodule "bundle/ctrlp-py-matcher"]
 	path = bundle/ctrlp-py-matcher
 	url = https://github.com/gFelikZ/ctrlp-py-matcher.git
+    ignore = dirty
+    branch = master
+[submodule "bundle/vim-psql-pager"]
+	path = bundle/vim-psql-pager
+	url = git@github.com:kyokley/vim-psql-pager.git
     ignore = dirty
     branch = master
