@@ -7,7 +7,7 @@ fi
 
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
-sudo aptitude install -y rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 silversearcher-ag
+sudo aptitude install -y rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 silversearcher-ag python-pip
 sudo pip install flake8 yapf
 
 cd ~/.vim
