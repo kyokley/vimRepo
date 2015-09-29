@@ -31,7 +31,12 @@ then
     mkdir "$HOME/.vimviews"
 fi
 
-sudo chown -R $USER:$USER $HOME/.vimbackup $HOME/.vimswap $HOME/.vimviews
+if [ ! -e "$HOME/.vimundodir" ]
+then
+    mkdir "$HOME/.vimundodir"
+fi
+
+sudo chown -R $USER:$USER $HOME/.vimbackup $HOME/.vimswap $HOME/.vimviews $HOME/.vimundodir
 
 chmod a+x "$HOME/.vim/vimpsqlpager"
 sudo ln -s "$HOME/.vim/vimpsqlpager" "/bin/vimpsqlpager"
