@@ -37,8 +37,3 @@ then
 fi
 
 sudo chown -R $USER:$USER $HOME/.vimbackup $HOME/.vimswap $HOME/.vimviews $HOME/.vimundodir
-
-chmod a+x "$HOME/.vim/vimpsqlpager"
-sudo ln -s "$HOME/.vim/vimpsqlpager" "/bin/vimpsqlpager"
-chmod a+x "$HOME/.vim/vimpgclipager"
-sudo ln -s "$HOME/.vim/vimpgclipager" "/bin/vimpgclipager"
