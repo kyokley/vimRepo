@@ -74,7 +74,7 @@ hi SpellBad cterm=NONE ctermbg=darkred ctermfg=yellow guibg=darkred guifg=yellow
 set incsearch
 set hlsearch
 
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=trail:_
 set nolist
 set timeout
 set timeoutlen=400
@@ -185,7 +185,7 @@ augroup filetype_python
     " Also highlight all tabs and trailing whitespace characters.
     au FileType python highlight ExtraWhitespace ctermbg=darkred guibg=darkred ctermfg=yellow guifg=yellow
     au FileType python match ExtraWhitespace /\s\+$\|\t/
-
+    au BufWritePost, cursorhold * filetype detect
     "au FileType python colo molokai
 augroup END
 
