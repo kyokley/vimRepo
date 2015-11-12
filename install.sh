@@ -7,7 +7,7 @@ fi
 
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
-sudo aptitude install -y rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 silversearcher-ag
+sudo aptitude install -y rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 silversearcher-ag python-pip
 sudo pip install flake8 yapf
 
 cd ~/.vim
@@ -31,9 +31,9 @@ then
     mkdir "$HOME/.vimviews"
 fi
 
-sudo chown -R $USER:$USER $HOME/.vimbackup $HOME/.vimswap $HOME/.vimviews
+if [ ! -e "$HOME/.vimundodir" ]
+then
+    mkdir "$HOME/.vimundodir"
+fi
 
-chmod a+x "$HOME/.vim/vimpsqlpager"
-sudo ln -s "$HOME/.vim/vimpsqlpager" "/bin/vimpsqlpager"
-chmod a+x "$HOME/.vim/vimpgclipager"
-sudo ln -s "$HOME/.vim/vimpgclipager" "/bin/vimpgclipager"
+sudo chown -R $USER:$USER $HOME/.vimbackup $HOME/.vimswap $HOME/.vimviews $HOME/.vimundodir

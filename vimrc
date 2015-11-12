@@ -74,7 +74,7 @@ hi SpellBad cterm=NONE ctermbg=darkred ctermfg=yellow guibg=darkred guifg=yellow
 set incsearch
 set hlsearch
 
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=trail:_
 set nolist
 set timeout
 set timeoutlen=400
@@ -116,7 +116,7 @@ let @u = ':silent! s/\(\S\)\s\{2,\}/\1 /g:silent! s/\S\zs\s\+\ze[:\])]//g'
 noremap <leader>u :norm @u<CR>
 
 " A macro to capitalize SQL keywords
-let @s = ':silent! s/\<\(check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
+let @s = ':silent! s/\<\(foreign\|references\|cascade\|if\|check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
 noremap <leader>s :norm @s<CR><CR>
 
 " Add some mappings
@@ -148,25 +148,13 @@ vnoremap <Tab> w
 nnoremap <S-Tab> b
 vnoremap <S-Tab> b
 vnoremap gb :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
-noremap <leader>j :RopeGotoDefinition<CR>
-noremap <leader>r :RopeRename<CR>
 nnoremap <leader>a <Esc>:LAck!
 nnoremap <C>a <Esc>:LAck!
 noremap <leader>fc /\v^[<=>]{7}( .*\|$)<CR>
-"noremap <leader>n <Plug>TaskList
-"It would be nice to get the following lines to work at some point
-nnoremap <leader>N :noautocmd vimgrep #TODO\|NOTE#j **/*.py <CR>
-nnoremap <leader>n :noautocmd vim #TODO\|NOTE#j *.py <CR>
-
-" Yapf!!!
-nnoremap <leader>y :call Yapf()<cr>
-vnoremap <leader>y :!yapf<cr>
-autocmd FileType python set formatprg=yapf
 
 nnoremap ,v :source $MYVIMRC<CR>
 nnoremap ,e :e $MYVIMRC<CR>
 
-nnoremap ,d :cd ~/TexturaWD/textura<CR>
 runtime ftplugin/man.vim
 
 " AutoCommands!
@@ -189,6 +177,15 @@ augroup filetype_python
     au FileType python set foldlevel=99
     au FileType python set nosmartindent
     au FileType python map <buffer> <leader>8 :call Flake8()<CR>
+    " Tell Vim which characters to show for expanded TABs,
+    " trailing whitespace, and end-of-lines. VERY useful!
+    au FileType python set listchars=trail:_
+    au FileType python set list
+
+    " Also highlight all tabs and trailing whitespace characters.
+    au FileType python highlight ExtraWhitespace ctermbg=darkred guibg=darkred ctermfg=yellow guifg=yellow
+    au FileType python match ExtraWhitespace /\s\+$\|\t/
+    au BufWritePost,cursorhold * filetype detect
     "au FileType python colo molokai
 augroup END
 
@@ -269,7 +266,7 @@ nnoremap <leader>t :let g:ctrlp_working_path_mode = 'c'<CR>:CtrlP<CR>:let g:ctrl
 nnoremap <leader>p :let g:ctrlp_working_path_mode = 'r'<CR>:CtrlP<CR>
 " Set delay to prevent extra search
 let g:ctrlp_lazy_update = 0
-let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_files = 0
 " If ag is available use it as filename list generator instead of 'find'
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -298,9 +295,6 @@ let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': [] }
-
-"VCSCommand Settings
-let g:VCSCommandDeleteOnHide = 1
 
 "Flake8
 let g:flake8_show_quickfix=0
@@ -364,7 +358,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{StatuslineTabWarning()}
 set statusline+=%*
 
-set statusline+=%{StatuslineTrailingSpaceWarning()}\ 
+set statusline+=%{StatuslineTrailingSpaceWarning()}\ " Space at the end of the line left intentionally
+set statusline+=%{StatuslineLongLineWarning()}\ " Space at the end of the line left intentionally
 
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
