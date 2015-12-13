@@ -301,6 +301,7 @@ let NERDTreeIgnore=['\.pyc$', '\.swp$']
 "Syntastic Settings
 let g:syntastic_check_on_open=1
 let g:syntastic_python_checkers=["pyflakes"]
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
