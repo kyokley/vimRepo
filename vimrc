@@ -57,7 +57,7 @@ highlight MatchParen ctermbg=4
 set cul
 
 set t_Co=256
-hi CursorLine cterm=NONE ctermbg=darkblue ctermfg=white guibg=darkblue guifg=white
+hi CursorLine cterm=NONE ctermbg=18 ctermfg=white guibg=18 guifg=white
 hi LineNr cterm=NONE ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
 hi search cterm=NONE ctermbg=lightblue ctermfg=black guibg=lightblue guifg=black
 hi signcolumn cterm=NONE ctermbg=black guibg=black
@@ -163,7 +163,7 @@ augroup EditVim
     au InsertEnter * highlight LineNr ctermbg=red   guibg=red
     au InsertEnter * hi CursorLine ctermbg=red guibg=red
     au InsertLeave * highlight LineNr ctermbg=NONE guibg=NONE
-    au InsertLeave * hi CursorLine ctermbg=darkblue guibg=darkblue
+    au InsertLeave * hi CursorLine ctermbg=18 guibg=18
     au FileType svn,*commit* setlocal spell
     au FileType git,*commit* setlocal spell
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
