@@ -57,7 +57,7 @@ highlight MatchParen ctermbg=4
 set cul
 
 set t_Co=256
-hi CursorLine cterm=NONE ctermbg=18 ctermfg=white guibg=darkblue guifg=white
+hi CursorLine cterm=NONE ctermbg=18 ctermfg=white guibg=18 guifg=white
 hi LineNr cterm=NONE ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
 hi search cterm=NONE ctermbg=lightblue ctermfg=black guibg=lightblue guifg=black
 hi signcolumn cterm=NONE ctermbg=black guibg=black
@@ -160,8 +160,10 @@ runtime ftplugin/man.vim
 " AutoCommands!
 augroup EditVim
     autocmd!
-    au InsertEnter * highlight LineNr ctermbg=red   guibg=red
+    au InsertEnter * highlight LineNr ctermbg=darkred   guibg=darkred
+    au InsertEnter * hi CursorLine ctermbg=darkred guibg=darkred
     au InsertLeave * highlight LineNr ctermbg=NONE guibg=NONE
+    au InsertLeave * hi CursorLine ctermbg=18 guibg=18
     au FileType svn,*commit* setlocal spell
     au FileType git,*commit* setlocal spell
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -301,6 +303,7 @@ let NERDTreeIgnore=['\.pyc$', '\.swp$']
 "Syntastic Settings
 let g:syntastic_check_on_open=1
 let g:syntastic_python_checkers=["pyflakes"]
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
