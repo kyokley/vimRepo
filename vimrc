@@ -160,10 +160,12 @@ runtime ftplugin/man.vim
 " AutoCommands!
 augroup EditVim
     autocmd!
-    au InsertEnter * highlight LineNr ctermbg=darkred   guibg=darkred
-    au InsertEnter * hi CursorLine ctermbg=darkred guibg=darkred
-    au InsertLeave * highlight LineNr ctermbg=NONE guibg=NONE
-    au InsertLeave * hi CursorLine ctermbg=18 guibg=18
+
+    au InsertEnter * if &buftype != 'nofile' | hi LineNr ctermbg=darkred   guibg=darkred | endif
+    au InsertEnter * if &buftype != 'nofile' | hi CursorLine ctermbg=darkred guibg=darkred | else | hi CursorLine ctermbg=NONE guibg=NONE | endif
+    au InsertLeave * if &buftype != 'nofile' | hi LineNr ctermbg=NONE guibg=NONE | endif
+    au InsertLeave * hi CursorLine ctermbg=18 guibg=darkblue
+
     au FileType svn,*commit* setlocal spell
     au FileType git,*commit* setlocal spell
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
