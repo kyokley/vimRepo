@@ -214,6 +214,18 @@ function! RaiseExceptionForUnresolvedErrors()
     if search('\s\+$', 'nw') != 0
         throw 'Found trailing whitespace'
     endif
+    if &filetype == 'python'
+        let s:temp_name = expand('%')
+        enew
+        silent exe 'r!pyflakes ' . s:temp_name
+        unlet! s:temp_name
+        if search('undefined name', 'nw') != 0
+            bd!
+            throw 'Found Bad Syntax!'
+        else
+            bd!
+        endif
+    endif
 endfunction
 autocmd BufWritePre * call RaiseExceptionForUnresolvedErrors()
 
