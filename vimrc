@@ -218,7 +218,7 @@ function! RaiseExceptionForUnresolvedErrors()
     endif
     if &filetype == 'python'
         let s:temp_name = expand('%')
-        enew
+        new
         silent exe 'r!pyflakes ' . s:temp_name
         unlet! s:temp_name
         if search('undefined name', 'nw') != 0
