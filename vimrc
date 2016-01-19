@@ -221,11 +221,16 @@ function! RaiseExceptionForUnresolvedErrors()
         new
         silent exe 'r!pyflakes ' . s:temp_name
         unlet! s:temp_name
-        if search('undefined name', 'nw') != 0
+        let s:un_res = search('undefined name', 'nw')
+        let s:ui_res = search('unexpected indent', 'nw')
+        if s:un_res != 0
+            let s:message = 'Syntax error! ' . getline(s:un_res)
             bd!
-            throw 'Found Bad Syntax!'
-        else
+            throw s:message
+        elseif s:ui_res != 0
+            let s:message = 'Syntax error! ' . getline(s:ui_res)
             bd!
+            throw s:message
         endif
     endif
 endfunction
