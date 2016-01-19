@@ -217,12 +217,18 @@ function! RaiseExceptionForUnresolvedErrors()
         throw 'Found trailing whitespace'
     endif
     if &filetype == 'python'
-        let s:temp_name = expand('%')
+        let s:temp_name = '.' . expand('%') . '_vim_' . strftime("%T")
+        silent exe 'w !pyflakes &> ' . s:temp_name . '_bak'
+
         new
-        silent exe 'r!pyflakes ' . s:temp_name
+        silent exe 'r ' . s:temp_name . '_bak'
+        silent exe '!rm ' . s:temp_name . '_bak'
+
         unlet! s:temp_name
+        let s:is_res = search('invalid syntax', 'nw')
         let s:un_res = search('undefined name', 'nw')
         let s:ui_res = search('unexpected indent', 'nw')
+
         if s:un_res != 0
             let s:message = 'Syntax error! ' . getline(s:un_res)
             bd!
@@ -231,6 +237,12 @@ function! RaiseExceptionForUnresolvedErrors()
             let s:message = 'Syntax error! ' . getline(s:ui_res)
             bd!
             throw s:message
+        elseif s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        else
+            bd!
         endif
     endif
 endfunction
