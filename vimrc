@@ -217,7 +217,7 @@ function! RaiseExceptionForUnresolvedErrors()
         throw 'Found trailing whitespace'
     endif
     if &filetype == 'python'
-        let s:temp_name = '.' . expand('%') . '_vim_' . strftime("%T")
+        let s:temp_name = expand('%') . '_vim_' . strftime("%T")
         silent exe 'w !pyflakes &> ' . s:temp_name . '_bak'
 
         new
