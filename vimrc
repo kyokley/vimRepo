@@ -217,33 +217,37 @@ function! RaiseExceptionForUnresolvedErrors()
         throw 'Found trailing whitespace'
     endif
     if &filetype == 'python'
-        let s:temp_name = expand('%') . '_vim_' . strftime("%T")
-        silent exe 'w !pyflakes &> ' . s:temp_name . '_bak'
+        let s:file_name = expand('%:t')
+        silent %yank p
 
         new
-        silent exe 'r ' . s:temp_name . '_bak'
-        silent exe '!rm ' . s:temp_name . '_bak'
+        silent put p
+        silent exe '%!pyflakes'
+        silent exe '%s/<stdin>/' . s:file_name . '/e'
 
         unlet! s:temp_name
-        let s:is_res = search('invalid syntax', 'nw')
         let s:un_res = search('undefined name', 'nw')
-        let s:ui_res = search('unexpected indent', 'nw')
-
         if s:un_res != 0
             let s:message = 'Syntax error! ' . getline(s:un_res)
             bd!
             throw s:message
-        elseif s:ui_res != 0
+        endif
+
+        let s:ui_res = search('unexpected indent', 'nw')
+        if s:ui_res != 0
             let s:message = 'Syntax error! ' . getline(s:ui_res)
             bd!
             throw s:message
-        elseif s:is_res != 0
+        endif
+
+        let s:is_res = search('invalid syntax', 'nw')
+        if s:is_res != 0
             let s:message = 'Syntax error! ' . getline(s:is_res)
             bd!
             throw s:message
-        else
-            bd!
         endif
+
+        bd!
     endif
 endfunction
 autocmd BufWritePre * call RaiseExceptionForUnresolvedErrors()
