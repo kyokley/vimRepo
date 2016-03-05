@@ -58,6 +58,7 @@ set cul
 
 set t_Co=256
 hi CursorLine cterm=NONE ctermbg=18 ctermfg=white guibg=18 guifg=white
+hi colorcolumn cterm=NONE ctermbg=black guibg=black
 hi LineNr cterm=NONE ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
 hi search cterm=NONE ctermbg=lightblue ctermfg=black guibg=lightblue guifg=black
 hi signcolumn cterm=NONE ctermbg=black guibg=black
@@ -179,7 +180,8 @@ augroup filetype_python
     autocmd!
     au FileType python set foldmethod=indent
     au FileType python set foldlevel=99
-    au FileType python set nosmartindent
+    "au FileType python set nosmartindent
+    au FileType python BracelessEnable +indent +highlight-cc2
     au FileType python map <buffer> <leader>8 :call Flake8()<CR>
     " Tell Vim which characters to show for expanded TABs,
     " trailing whitespace, and end-of-lines. VERY useful!
