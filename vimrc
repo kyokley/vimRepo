@@ -556,27 +556,18 @@ def SetBreakpoint():
     strWhite = re.search( '^(\s*)', strLine).group(1)
 
     vim.current.buffer.append(
-       "%(space)sipdb.set_trace() %(mark)s Breakpoint %(mark)s" %
+       "%(space)simport ipdb; ipdb.set_trace() %(mark)s Breakpoint %(mark)s" %
          {'space':strWhite, 'mark': '#' * 30}, nLine - 1)
-
-    for strLine in vim.current.buffer:
-        if strLine == "import ipdb":
-            break
-    else:
-        vim.current.buffer.append('import ipdb', 0)
-        vim.command( 'normal j1')
 
 vim.command( 'noremap <F12> :py SetBreakpoint()<cr>')
 
 def RemoveBreakpoints():
-    import re
-
     nCurrentLine = int( vim.eval( 'line(".")'))
 
     nLines = []
     nLine = 1
     for strLine in vim.current.buffer:
-        if strLine == "import ipdb" or strLine.lstrip()[:16] == "ipdb.set_trace()":
+        if strLine == "import ipdb" or strLine.lstrip()[:29] == "import ipdb; ipdb.set_trace()":
             nLines.append( nLine)
         nLine += 1
 
@@ -590,7 +581,7 @@ def RemoveBreakpoints():
 
     vim.command( "normal %dG" % nCurrentLine)
 
-vim.command( "noremap <S-F12> :py RemoveBreakpoints()<cr>")
+vim.command( "noremap <F24> :py RemoveBreakpoints()<cr>")
 EOF
 "vim:syntax=vim
 
