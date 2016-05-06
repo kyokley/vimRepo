@@ -212,22 +212,25 @@ augroup CursorLineOnlyInActiveWindow
 augroup END
 
 function! RaiseExceptionForUnresolvedErrors()
-    if search('\v^[<=>]{7}( .*|$)', 'nw') != 0
-        throw 'Found unresolved conflicts'
-    endif
-    if search('\s\+$', 'nw') != 0
-        throw 'Found trailing whitespace'
-    endif
-    if &filetype == 'python'
-        let s:file_name = expand('%:t')
+    let s:file_name = expand('%:t')
 
+    let s:conflict_line = search('\v^[<=>]{7}( .*|$)', 'nw')
+    if s:conflict_line != 0
+        throw 'Found unresolved conflicts in ' . s:file_name . ':' . s:conflict_line
+    endif
+
+    let s:whitespace_line = search('\s\+$', 'nw')
+    if s:whitespace_line != 0
+        throw 'Found trailing whitespace in ' . s:file_name . ':' . s:whitespace_line
+    endif
+
+    if &filetype == 'python'
         silent %yank p
         new
         silent 0put p
         silent $,$d
         silent %!pyflakes
         silent exe '%s/<stdin>/' . s:file_name . '/e'
-        unlet! s:file_name
 
         let s:un_res = search('undefined name', 'nw')
         if s:un_res != 0
