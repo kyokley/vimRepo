@@ -250,6 +250,13 @@ function! RaiseExceptionForUnresolvedErrors()
             throw s:message
         endif
 
+        let s:is_res = search('unindent does not match any outer indentation level', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
         bd!
     endif
 endfunction
