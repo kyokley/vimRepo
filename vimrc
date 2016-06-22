@@ -117,8 +117,11 @@ let @u = ':silent! s/\(\S\)\s\{2,\}/\1 /g:silent! s/\S\zs\s\+\ze[:\])]//g'
 noremap <leader>u :norm @u<CR>
 
 " A macro to capitalize SQL keywords
-let @s = ':silent! s/\<\(case\|when\|then\|else\|end\|type\|using\|foreign\|references\|cascade\|if\|check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
-noremap <leader>s :norm @s<CR><CR>
+let @i = ':silent! s/\<\(trigger\|after\|for\|each\|row\|returns\|replace\|function\|execute\|procedure\|with\|case\|when\|then\|else\|end\|type\|using\|foreign\|references\|cascade\|if\|check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
+
+" Back to being a WIP
+let @_ = ":silent! s/\\('\\)\\@<![^']\\{-}\\zs\\<\\(trigger\\|after\\|for\\|each\\|row\\|returns\\|replace\\|function\\|execute\\|procedure\\|with\\|case\\|when\\|then\\|else\\|end\\|type\\|using\\|foreign\\|references\\|cascade\\|if\\|check\\|coalesce\\|boolean\\|union\\|false\\|true\\|integer\\|text\\|serial\\|primary\\|key\\|into\\|insert\\|drop\\|limit\\|unique\\|index\\|default\\|column\\|add\\|table\\|create\\|alter\\|delete\\|interval\\|set\\|begin\\|order by\\|group by\\|commit\\|update\\|rollback\\|as\\|select\\|distinct\\|from\\|null\\|or\\|is\\|inner\\|left\\|right\\|outer\\|join\\|in\\|not\\|exists\\|on\\|where\\|and\\|constraint\\)\\>\\ze[^']\\{-}\\('\\)\\@!\\c/\\U&/g"
+noremap <leader>s :norm @i<CR><CR>
 
 " Add some mappings
 noremap ,# :call CommentLineToEnd('#')<CR>+
@@ -212,24 +215,27 @@ augroup CursorLineOnlyInActiveWindow
 augroup END
 
 function! RaiseExceptionForUnresolvedErrors()
-    if search('\v^[<=>]{7}( .*|$)', 'nw') != 0
-        throw 'Found unresolved conflicts'
-    endif
-    if search('\s\+$', 'nw') != 0
-        throw 'Found trailing whitespace'
-    endif
-    if &filetype == 'python'
-        let s:file_name = expand('%:t')
+    let s:file_name = expand('%:t')
 
+    let s:conflict_line = search('\v^[<=>]{7}( .*|$)', 'nw')
+    if s:conflict_line != 0
+        throw 'Found unresolved conflicts in ' . s:file_name . ':' . s:conflict_line
+    endif
+
+    let s:whitespace_line = search('\s\+$', 'nw')
+    if s:whitespace_line != 0
+        throw 'Found trailing whitespace in ' . s:file_name . ':' . s:whitespace_line
+    endif
+
+    if &filetype == 'python'
         silent %yank p
         new
         silent 0put p
         silent $,$d
         silent %!pyflakes
         silent exe '%s/<stdin>/' . s:file_name . '/e'
-        unlet! s:file_name
 
-        let s:un_res = search('undefined name', 'nw')
+        let s:un_res = search('\(unable to detect \)\@<!undefined name', 'nw')
         if s:un_res != 0
             let s:message = 'Syntax error! ' . getline(s:un_res)
             bd!
@@ -251,6 +257,13 @@ function! RaiseExceptionForUnresolvedErrors()
         endif
 
         let s:is_res = search('unindent does not match any outer indentation level', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('EOL while scanning string literal', 'nw')
         if s:is_res != 0
             let s:message = 'Syntax error! ' . getline(s:is_res)
             bd!
