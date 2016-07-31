@@ -98,6 +98,3 @@
 	url = git@github.com:FelikZ/ctrlp-py-matcher.git
     ignore = dirty
     branch = master
-[submodule "bundle/braceless.vim"]
-	path = bundle/braceless.vim
-	url = git@github.com:tweekmonster/braceless.vim.git
