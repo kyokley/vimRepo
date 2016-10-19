@@ -14,7 +14,6 @@ cd ~/.vim
 git submodule update --init --recursive
 
 sudo aptitude install -y build-essential cmake python-dev
-~/.vim/bundle/YouCompleteMe/install.sh
 
 if [ ! -e "$HOME/.vimbackup" ]
 then
