@@ -214,6 +214,19 @@ augroup filetype_cs
     au FileType cs set smartindent
 augroup END
 
+augroup filetype_text
+    autocmd!
+    au FileType text setlocal textwidth=80
+    au FileType text setlocal smartindent
+    au FileType text setlocal spell spelllang=en_us
+    au FileType text setlocal noexpandtab
+augroup END
+
+augroup filetype_help
+    autocmd!
+    au FileType help setlocal nospell
+augroup END
+
 augroup CursorLineOnlyInActiveWindow
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
@@ -255,6 +268,13 @@ function! RaiseExceptionForUnresolvedErrors()
             throw s:message
         endif
 
+        let s:ui_res = search('expected an indented block', 'nw')
+        if s:ui_res != 0
+            let s:message = 'Syntax error! ' . getline(s:ui_res)
+            bd!
+            throw s:message
+        endif
+
         let s:is_res = search('invalid syntax', 'nw')
         if s:is_res != 0
             let s:message = 'Syntax error! ' . getline(s:is_res)
@@ -272,6 +292,20 @@ function! RaiseExceptionForUnresolvedErrors()
         let s:is_res = search('EOL while scanning string literal', 'nw')
         if s:is_res != 0
             let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('trailing comma not allowed without surrounding parentheses', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('problem decoding source', 'nw')
+        if s:is_res != 0
+            let s:message = 'pyflakes error! Check results manually! ' . getline(s:is_res)
             bd!
             throw s:message
         endif
@@ -384,8 +418,13 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-"Pydiction Config
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+let g:bufferline_rotate = 1
+
+" Jedi
+let g:jedi#documentation_command = ''
+
+"SuperTab
+let g:SuperTabDefaultCompletionType = "context"
 
 "statusline setup
 set statusline=
@@ -576,10 +615,10 @@ python << EOF
 import vim
 def SetBreakpoint():
     import re
-    nLine = int( vim.eval( 'line(".")'))
+    nLine = int(vim.eval('line(".")'))
 
     strLine = vim.current.line
-    strWhite = re.search( '^(\s*)', strLine).group(1)
+    strWhite = re.search('^(\s*)', strLine).group(1)
 
     vim.current.buffer.append(
        "%(space)simport ipdb; ipdb.set_trace() %(mark)s Breakpoint %(mark)s" %
@@ -588,7 +627,7 @@ def SetBreakpoint():
 vim.command( 'noremap <F12> :py SetBreakpoint()<cr>')
 
 def RemoveBreakpoints():
-    nCurrentLine = int( vim.eval( 'line(".")'))
+    nCurrentLine = int(vim.eval('line(".")'))
 
     nLines = []
     nLine = 1
@@ -600,14 +639,14 @@ def RemoveBreakpoints():
     nLines.reverse()
 
     for nLine in nLines:
-        vim.command( "normal %dG" % nLine)
-        vim.command( "normal dd")
+        vim.command("normal %dG" % nLine)
+        vim.command("normal dd")
         if nLine < nCurrentLine:
             nCurrentLine -= 1
 
-    vim.command( "normal %dG" % nCurrentLine)
+    vim.command("normal %dG" % nCurrentLine)
 
-vim.command( "noremap <F24> :py RemoveBreakpoints()<cr>")
+vim.command("noremap <F24> :py RemoveBreakpoints()<cr>")
 EOF
 "vim:syntax=vim
 

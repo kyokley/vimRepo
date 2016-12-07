@@ -3,11 +3,6 @@
 	url = git@github.com:vim-scripts/DrawIt.git
     ignore = dirty
     branch = master
-[submodule "bundle/YouCompleteMe"]
-	path = bundle/YouCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
-    ignore = dirty
-    branch = master
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
@@ -98,3 +93,6 @@
 	url = git@github.com:FelikZ/ctrlp-py-matcher.git
     ignore = dirty
     branch = master
+[submodule "bundle/jedi-vim"]
+	path = bundle/jedi-vim
+	url = git@github.com:davidhalter/jedi-vim.git
