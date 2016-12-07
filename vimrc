@@ -198,6 +198,12 @@ augroup filetype_python
     "au FileType python colo molokai
 augroup END
 
+augroup filetype_htmldjango
+    autocmd!
+    au FileType htmldjango set foldmethod=indent
+    au FileType htmldjango set foldlevel=99
+augroup END
+
 augroup filetype_cs
     autocmd!
     au FileType cs set omnifunc=syntaxcomplete#Complete
