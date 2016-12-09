@@ -7,14 +7,13 @@ fi
 
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
-sudo aptitude install -y rake vim-nox ruby-dev exuberant-ctags ack-grep pyflakes pep8 silversearcher-ag python-pip
+sudo aptitude install -y rake vim-nox-py2 ruby-dev exuberant-ctags ack-grep pyflakes pep8 silversearcher-ag python-pip
 sudo pip install flake8 yapf
 
 cd ~/.vim
 git submodule update --init --recursive
 
 sudo aptitude install -y build-essential cmake python-dev
-~/.vim/bundle/YouCompleteMe/install.sh
 
 if [ ! -e "$HOME/.vimbackup" ]
 then
