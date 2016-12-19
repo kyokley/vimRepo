@@ -4,22 +4,22 @@
 " F5 toggles undo tree
 " F10 toggles paste mode
 " <leader>h clears highlighting and signify symbols
-" 
+"
 " jj <Esc>
 " JJ <Esc>
 " kk <Esc>
 " KK <Esc>
-" 
+"
 " Shift-L :bnext
 " Shift-H :bprev
 " Shift-J 20 lines down
 " Shift-K 20 lines up
-" 
+"
 " Ctrl-j Move down a window
 " Ctrl-k Move up a window
 " Ctrl-h Move left a window
 " Ctrl-l Move right a window
-" 
+"
 " <Tab> Jump to next word
 " Shift-<Tab> Jump back a word
 "
@@ -57,7 +57,8 @@ highlight MatchParen ctermbg=4
 set cul
 
 set t_Co=256
-hi CursorLine cterm=NONE ctermbg=18 ctermfg=white guibg=darkblue guifg=white
+hi CursorLine cterm=NONE ctermbg=18 ctermfg=white guibg=18 guifg=white
+hi colorcolumn cterm=NONE ctermbg=black guibg=black
 hi LineNr cterm=NONE ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
 hi search cterm=NONE ctermbg=lightblue ctermfg=black guibg=lightblue guifg=black
 hi signcolumn cterm=NONE ctermbg=black guibg=black
@@ -116,8 +117,11 @@ let @u = ':silent! s/\(\S\)\s\{2,\}/\1 /g:silent! s/\S\zs\s\+\ze[:\])]//g'
 noremap <leader>u :norm @u<CR>
 
 " A macro to capitalize SQL keywords
-let @s = ':silent! s/\<\(foreign\|references\|cascade\|if\|check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
-noremap <leader>s :norm @s<CR><CR>
+let @i = ':silent! s/\<\(desc\|trigger\|after\|for\|each\|row\|returns\|replace\|function\|execute\|procedure\|with\|case\|when\|then\|else\|end\|type\|using\|foreign\|references\|cascade\|if\|check\|coalesce\|boolean\|union\|false\|true\|integer\|text\|serial\|primary\|key\|into\|insert\|drop\|limit\|unique\|index\|default\|column\|add\|table\|create\|alter\|delete\|interval\|set\|begin\|order by\|group by\|commit\|update\|rollback\|as\|select\|distinct\|from\|null\|or\|is\|inner\|right\|outer\|join\|in\|not\|exists\|on\|where\|and\|constraint\)\>\c/\U&/g'
+
+" Back to being a WIP
+let @_ = ":silent! s/\\('\\)\\@<![^']\\{-}\\zs\\<\\(trigger\\|after\\|for\\|each\\|row\\|returns\\|replace\\|function\\|execute\\|procedure\\|with\\|case\\|when\\|then\\|else\\|end\\|type\\|using\\|foreign\\|references\\|cascade\\|if\\|check\\|coalesce\\|boolean\\|union\\|false\\|true\\|integer\\|text\\|serial\\|primary\\|key\\|into\\|insert\\|drop\\|limit\\|unique\\|index\\|default\\|column\\|add\\|table\\|create\\|alter\\|delete\\|interval\\|set\\|begin\\|order by\\|group by\\|commit\\|update\\|rollback\\|as\\|select\\|distinct\\|from\\|null\\|or\\|is\\|inner\\|left\\|right\\|outer\\|join\\|in\\|not\\|exists\\|on\\|where\\|and\\|constraint\\)\\>\\ze[^']\\{-}\\('\\)\\@!\\c/\\U&/g"
+noremap <leader>s :norm @i<CR><CR>
 
 " Add some mappings
 noremap ,# :call CommentLineToEnd('#')<CR>+
@@ -160,22 +164,27 @@ runtime ftplugin/man.vim
 " AutoCommands!
 augroup EditVim
     autocmd!
-    au InsertEnter * highlight LineNr ctermbg=red   guibg=red
-    au InsertLeave * highlight LineNr ctermbg=NONE guibg=NONE
+
+    au InsertEnter * if &buftype != 'nofile' | hi LineNr ctermbg=darkred   guibg=darkred | endif
+    au InsertEnter * if &buftype != 'nofile' | hi CursorLine ctermbg=darkred guibg=darkred | else | hi CursorLine ctermbg=NONE guibg=NONE | endif
+    au InsertLeave * if &buftype != 'nofile' | hi LineNr ctermbg=NONE guibg=NONE | endif
+    au InsertLeave * hi CursorLine ctermbg=18 guibg=darkblue
+
     au FileType svn,*commit* setlocal spell
     au FileType git,*commit* setlocal spell
     au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-        
+
     "recalculate the trailing whitespace warning when idle, and after saving
     autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-    autocmd cursorhold,bufwritepost * unlet! b:statusline_conflict_warning   
+    autocmd cursorhold,bufwritepost * unlet! b:statusline_conflict_warning
 augroup END
 
 augroup filetype_python
     autocmd!
     au FileType python set foldmethod=indent
     au FileType python set foldlevel=99
-    au FileType python set nosmartindent
+    "au FileType python set nosmartindent
+    "au FileType python BracelessEnable +indent +highlight-cc2
     au FileType python map <buffer> <leader>8 :call Flake8()<CR>
     " Tell Vim which characters to show for expanded TABs,
     " trailing whitespace, and end-of-lines. VERY useful!
@@ -189,6 +198,12 @@ augroup filetype_python
     "au FileType python colo molokai
 augroup END
 
+augroup filetype_htmldjango
+    autocmd!
+    au FileType htmldjango set foldmethod=indent
+    au FileType htmldjango set foldlevel=99
+augroup END
+
 augroup filetype_cs
     autocmd!
     au FileType cs set omnifunc=syntaxcomplete#Complete
@@ -199,11 +214,106 @@ augroup filetype_cs
     au FileType cs set smartindent
 augroup END
 
+augroup filetype_text
+    autocmd!
+    au FileType text setlocal textwidth=80
+    au FileType text setlocal smartindent
+    au FileType text setlocal spell spelllang=en_us
+    au FileType text setlocal noexpandtab
+augroup END
+
+augroup filetype_help
+    autocmd!
+    au FileType help setlocal nospell
+augroup END
+
 augroup CursorLineOnlyInActiveWindow
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
+
+function! RaiseExceptionForUnresolvedErrors()
+    let s:file_name = expand('%:t')
+
+    let s:conflict_line = search('\v^[<=>]{7}( .*|$)', 'nw')
+    if s:conflict_line != 0
+        throw 'Found unresolved conflicts in ' . s:file_name . ':' . s:conflict_line
+    endif
+
+    let s:whitespace_line = search('\s\+$', 'nw')
+    if s:whitespace_line != 0
+        throw 'Found trailing whitespace in ' . s:file_name . ':' . s:whitespace_line
+    endif
+
+    if &filetype == 'python'
+        silent %yank p
+        new
+        silent 0put p
+        silent $,$d
+        silent %!pyflakes
+        silent exe '%s/<stdin>/' . s:file_name . '/e'
+
+        let s:un_res = search('\(unable to detect \)\@<!undefined name', 'nw')
+        if s:un_res != 0
+            let s:message = 'Syntax error! ' . getline(s:un_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:ui_res = search('unexpected indent', 'nw')
+        if s:ui_res != 0
+            let s:message = 'Syntax error! ' . getline(s:ui_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:ui_res = search('expected an indented block', 'nw')
+        if s:ui_res != 0
+            let s:message = 'Syntax error! ' . getline(s:ui_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('invalid syntax', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('unindent does not match any outer indentation level', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('EOL while scanning string literal', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('trailing comma not allowed without surrounding parentheses', 'nw')
+        if s:is_res != 0
+            let s:message = 'Syntax error! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        let s:is_res = search('problem decoding source', 'nw')
+        if s:is_res != 0
+            let s:message = 'pyflakes error! Check results manually! ' . getline(s:is_res)
+            bd!
+            throw s:message
+        endif
+
+        bd!
+    endif
+endfunction
+autocmd BufWritePre * call RaiseExceptionForUnresolvedErrors()
 
 function! s:DiffWithSaved()
   let filetype=&ft
@@ -291,6 +401,7 @@ let NERDTreeIgnore=['\.pyc$', '\.swp$']
 "Syntastic Settings
 let g:syntastic_check_on_open=1
 let g:syntastic_python_checkers=["pyflakes"]
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
@@ -307,8 +418,13 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-"Pydiction Config
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+let g:bufferline_rotate = 1
+
+" Jedi
+let g:jedi#documentation_command = ''
+
+"SuperTab
+let g:SuperTabDefaultCompletionType = "context"
 
 "statusline setup
 set statusline=
@@ -499,47 +615,38 @@ python << EOF
 import vim
 def SetBreakpoint():
     import re
-    nLine = int( vim.eval( 'line(".")'))
+    nLine = int(vim.eval('line(".")'))
 
     strLine = vim.current.line
-    strWhite = re.search( '^(\s*)', strLine).group(1)
+    strWhite = re.search('^(\s*)', strLine).group(1)
 
     vim.current.buffer.append(
-       "%(space)sipdb.set_trace() %(mark)s Breakpoint %(mark)s" %
+       "%(space)simport ipdb; ipdb.set_trace() %(mark)s Breakpoint %(mark)s" %
          {'space':strWhite, 'mark': '#' * 30}, nLine - 1)
-
-    for strLine in vim.current.buffer:
-        if strLine == "import ipdb":
-            break
-    else:
-        vim.current.buffer.append('import ipdb', 0)
-        vim.command( 'normal j1')
 
 vim.command( 'noremap <F12> :py SetBreakpoint()<cr>')
 
 def RemoveBreakpoints():
-    import re
-
-    nCurrentLine = int( vim.eval( 'line(".")'))
+    nCurrentLine = int(vim.eval('line(".")'))
 
     nLines = []
     nLine = 1
     for strLine in vim.current.buffer:
-        if strLine == "import ipdb" or strLine.lstrip()[:16] == "ipdb.set_trace()":
+        if strLine == "import ipdb" or strLine.lstrip()[:29] == "import ipdb; ipdb.set_trace()":
             nLines.append( nLine)
         nLine += 1
 
     nLines.reverse()
 
     for nLine in nLines:
-        vim.command( "normal %dG" % nLine)
-        vim.command( "normal dd")
+        vim.command("normal %dG" % nLine)
+        vim.command("normal dd")
         if nLine < nCurrentLine:
             nCurrentLine -= 1
 
-    vim.command( "normal %dG" % nCurrentLine)
+    vim.command("normal %dG" % nCurrentLine)
 
-vim.command( "noremap <S-F12> :py RemoveBreakpoints()<cr>")
+vim.command("noremap <F24> :py RemoveBreakpoints()<cr>")
 EOF
 "vim:syntax=vim
 

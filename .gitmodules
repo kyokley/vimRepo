@@ -3,11 +3,6 @@
 	url = https://github.com/vim-scripts/DrawIt.git
     ignore = dirty
     branch = master
-[submodule "bundle/YouCompleteMe"]
-	path = bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe.git
-    ignore = dirty
-    branch = master
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -101,5 +96,10 @@
 [submodule "bundle/vim-psql-pager"]
 	path = bundle/vim-psql-pager
 	url = https://github.com/kyokley/vim-psql-pager.git
+    ignore = dirty
+    branch = master
+[submodule "bundle/jedi-vim"]
+	path = bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
     ignore = dirty
     branch = master
