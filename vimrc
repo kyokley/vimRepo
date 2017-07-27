@@ -363,7 +363,7 @@ let g:QSMatchFn = 'fuzzy'
 let g:QSIgnore = ".*\.pyc$;.*\.swp$"
 
 " PyMatcher for CtrlP
-if !has('python')
+if !has('python3')
     echo 'In order to use pymatcher plugin, you need +python compiled vim'
 else
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -611,7 +611,7 @@ endfunction
 
 set laststatus=2
 
-python << EOF
+python3 << EOF
 import vim
 def SetBreakpoint():
     import re
